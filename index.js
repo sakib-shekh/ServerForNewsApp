@@ -10,11 +10,17 @@ dotenv.config({
 app.get("/", async(req, res) => {
     
     // console.log(req.body);
-    // const {country,category,PageValue,Page}=req.body;
-    const country=req.body.country;
-    const category=req.body.category;
-    const PageValue=req.body.PageValue;
-    const Page=req.body.Page;
+    let {country,category,PageValue,Page}=req.body;
+
+    if(country===undefined)
+    country="in";
+    if(category===undefined)
+    category="business";
+
+    if(PageValue===undefined)
+    PageValue="3";
+    if(Page===undefined)
+    Page="1";
   const TempUrl = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${process.env.API_KEY}&pagesize=${PageValue}&language=en&page=${Page}`;
   try{
     console.log(TempUrl);
