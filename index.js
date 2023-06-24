@@ -19,13 +19,15 @@ app.get("/", async(req, res) => {
   try{
     console.log(TempUrl);
     let tempData=await fetch(TempUrl);
+    console.log(tempData);
         let finData=await tempData.json();
+        console.log(finData);
         res.send(finData);
   }
     catch(err)
     {
       console.log(err);
-        res.json({"staus":"ok"});
+        res.json({"staus":"error",error:err});
     }
 });
 
