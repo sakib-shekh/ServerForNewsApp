@@ -8,8 +8,8 @@ app.use(json());
 dotenv.config({
   path: "./config/config.env",
 });
-app.get("/", async(req, res) => {
-    
+app.post("/", async(req, res) => {
+  
     // console.log(req.body);
     let {country,category,PageValue,Page}=req.body;
 
@@ -19,7 +19,7 @@ app.get("/", async(req, res) => {
     category="business";
 
     if(PageValue===undefined)
-    PageValue="3";
+    PageValue="10";
     if(Page===undefined)
     Page="1";
   const TempUrl = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${process.env.API_KEY}&pagesize=${PageValue}&language=en&page=${Page}`;
